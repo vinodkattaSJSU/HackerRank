@@ -1,0 +1,64 @@
+// 1.find minimum number in Set B and Subtract from every number in Set B to get indexs for cache array.
+// 2.Increase the count at index(difference=number in Set B-minimum value) in cache array.
+// 3.Now decrease the count in cache array at index (difference=number in Set A-minimum value).
+// 4.In the cache array if any value is not equal to zero then that number(index+minimum) is missing in Set A.
+
+import java.util.*;
+public class Solution1 {
+    static int[] missingNumbers(int[] arr, int[] brr) {
+        // Complete this function
+        int[] count = new int[101];
+        ArrayList<Integer> resultlist=new ArrayList<Integer>();
+        int min=arr[0];
+        //finding minimum number in brr(Set B)
+        for(int i=0;i<arr.length;i++){
+            if(min>brr[i])
+                min=brr[i];
+        }
+        
+        //For every number in brr(set B) we are increasing count at the count index array
+        for(int i=0;i<brr.length;i++){
+            count[brr[i]-min]+=1;
+        }
+        for(int i=0;i<arr.length;i++){
+            count[arr[i]-min]-=1;
+        }
+        //If the count index not equal to zero then missing values
+        for(int i=0;i<101;i++){
+            if(count[i]!=0){
+                resultlist.add(i+min);
+            }
+        }
+        //returning the array
+        int j=0;
+        int[] result=new int[resultlist.size()];
+        for(int var:resultlist){
+            result[j]=var;
+            j++;
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+    	
+    	Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int[] arr = new int[n];
+        for(int arr_i = 0; arr_i < n; arr_i++){
+            arr[arr_i] = in.nextInt();
+        }
+        int m = in.nextInt();
+        int[] brr = new int[m];
+        for(int brr_i = 0; brr_i < m; brr_i++){
+            brr[brr_i] = in.nextInt();
+        }
+        int[] result = missingNumbers(arr, brr);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + (i != result.length - 1 ? " " : ""));
+        }
+        System.out.println("");
+
+
+        in.close();
+    }
+}
