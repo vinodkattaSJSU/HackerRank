@@ -23,7 +23,10 @@ function readLine() {
 function pairs(k, arr) {
     // Complete this function
     var count=0;
-    // arr.sort(); is not working in hacker rank
+    // arr.sort(); is not working in hacker rank.
+//sort() in JS sorts in lexical order not in numerical.
+//To sort numerically use sort(function(a,b){return a-b;})(ascending order)
+//descending order use sort(function(a,b){return b-a;})
     arr1=mergeSort(arr);
     //console.log(arr1);
     
