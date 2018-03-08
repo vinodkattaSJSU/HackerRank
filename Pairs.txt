@@ -27,12 +27,12 @@ function pairs(k, arr) {
 //sort() in JS sorts in lexical order not in numerical.
 //To sort numerically use sort(function(a,b){return a-b;})(ascending order)
 //descending order use sort(function(a,b){return b-a;})
-    arr1=mergeSort(arr);
+   // arr1=mergeSort(arr);
     //console.log(arr1);
-    
-    for(var i=0;i<arr1.length;i++){
-        for(var j=i+1;j<arr1.length;j++){
-            var diff=arr1[j]-arr1[i];
+    arr.sort(function(a,b){return a-b;});
+    for(var i=0;i<arr.length;i++){
+        for(var j=i+1;j<arr.length;j++){
+            var diff=arr[j]-arr[i];
             if(diff>k)
                 break;
             if(diff==k){
@@ -44,7 +44,7 @@ function pairs(k, arr) {
     return count;
     
 }
-function mergeSort(arr){
+/*function mergeSort(arr){
    var len = arr.length;
    if(len <2)
       return arr;
@@ -72,7 +72,7 @@ function merge(left, right){
   //remaining part needs to be addred to the result
   return result.concat(left.slice(l)).concat(right.slice(r));
 }
-
+*/
 function main() {
     var n_temp = readLine().split(' ');
     var n = parseInt(n_temp[0]);
