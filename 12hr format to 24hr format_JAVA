@@ -1,0 +1,53 @@
+import java.io.*;
+import java.math.*;
+import java.text.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    /*
+     * Complete the timeConversion function below.
+     */
+    static String timeConversion(String s) {
+        /*
+         * Write your code here.
+         */
+        if(s.equals("12:00:00AM")){
+            return "00:00:00";
+        }
+        else if(s.equals("12:00:00PM")){
+            return "12:00:00";
+        }
+        else if(s.substring(s.length()-2).equals("AM")){
+            if(Integer.parseInt(s.substring(0,2))==12){
+                return "00"+s.substring(2,s.length()-2);
+            }
+            return s.substring(0,s.length()-2);
+        }
+        else if(s.substring(s.length()-2).equals("PM")){
+            int hr= Integer.parseInt(s.substring(0,2));
+            if(hr==12){
+                return s.substring(0,s.length()-2);
+            }
+            hr+=12;
+            return Integer.toString(hr)+s.substring(2,s.length()-2);
+        }
+        return "";
+    }
+
+    private static final Scanner scan = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bw = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        String s = scan.nextLine();
+
+        String result = timeConversion(s);
+
+        bw.write(result);
+        bw.newLine();
+
+        bw.close();
+    }
+}
